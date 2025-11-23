@@ -1,29 +1,29 @@
-/* src/components/sidebar.css */
+/* src/sidebar.css */
 
-/* Paleta del sidebar */
+/* Paleta y variables del sidebar */
 :root {
   --gp-bg: #f8fafc;          /* Gris casi blanco */
   --gp-bg-hover: #ffffff;    /* Fondo al expandirse */
   --gp-border: #e5e7eb;
-  --gp-shadow: 0 12px 30px rgba(15, 23, 42, 0.18); /* sombra fuerte hacia abajo */
+  --gp-shadow: 0 10px 28px rgba(15, 23, 42, 0.18); /* Sombra gris hacia abajo */
   --gp-text: #0f172a;
   --gp-muted: #6b7280;
   --gp-accent: #111827;
   --gp-active-bg: #e5efff;
 }
 
-/* ===== SIDEBAR LATERAL ===== */
+/* ===== SIDEBAR BASE ===== */
 
 .gp-sidebar {
   position: relative;
   z-index: 100;
-
   height: 100vh;
+
   background: var(--gp-bg);
   border-right: 1px solid var(--gp-border);
   box-shadow: var(--gp-shadow);
 
-  /* Colapsado por defecto (solo iconos) */
+  /* Colapsado por defecto: solo íconos */
   width: 72px;
   transition:
     width 0.18s ease,
@@ -35,7 +35,7 @@
   padding: 10px 8px;
 }
 
-/* Al pasar el mouse, se expande y deja ver el texto */
+/* Al pasar el mouse: se expande y muestra textos */
 .gp-sidebar:hover {
   width: 220px;
   background: var(--gp-bg-hover);
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 /* ===== BOTONES ===== */
@@ -68,7 +68,7 @@
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 
   transition:
@@ -77,14 +77,14 @@
     transform 0.12s ease;
 }
 
-/* Icono SVG */
+/* ícono SVG */
 .gp-nav-icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
 
-/* Texto (se oculta cuando está colapsado) */
+/* Texto del botón (al lado del icono) */
 .gp-nav-text {
   white-space: nowrap;
   overflow: hidden;
@@ -97,14 +97,14 @@
     max-width 0.16s ease;
 }
 
-/* Cuando el sidebar se expande con hover, mostramos el texto */
+/* Cuando el sidebar está expandido por hover, mostramos el texto */
 .gp-sidebar:hover .gp-nav-btn {
-  justify-content: flex-start;
+  justify-content: flex-start; /* icono + texto alineados a la izquierda */
 }
 
 .gp-sidebar:hover .gp-nav-text {
   opacity: 1;
-  max-width: 140px; /* espacio para el texto */
+  max-width: 140px; /* suficiente para el texto */
 }
 
 /* Hover en botón */
@@ -119,15 +119,17 @@
   color: var(--gp-accent);
 }
 
-/* Sombrado de icono activo (si el SVG usa currentColor se nota más) */
+/* Cuando está activo, el icono también puede remarcarse si el SVG usa currentColor */
 .gp-nav-btn.active .gp-nav-icon {
   filter: drop-shadow(0 1px 3px rgba(15, 23, 42, 0.25));
 }
 
-/* ===== RESPONSIVE BÁSICO ===== */
+/* ===== RESPONSIVE (básico) ===== */
 
 @media (max-width: 768px) {
+  /* En mobile lo dejamos igual pero un poco más bajo en altura */
   .gp-sidebar {
+    height: 100vh;
     width: 64px;
   }
 
