@@ -1,20 +1,30 @@
 // src/views/ClienteTab.js
-import React from 'react';
+import React from "react";
 
 function ClienteTab() {
   return (
     <div id="cliente-tab" className="tab-content active">
-      {/* Acá luego pegamos el HTML de "Información del Cliente"
-          convertido a JSX (class -> className, for -> htmlFor, etc.) */}
       <div className="cli-card">
+        {/* Header con título + badge de orden/ID (usado por el JS global) */}
         <div className="cli-title">
           <div className="cli-title-left">
             <span className="cli-dot" aria-hidden="true"></span>
             <span className="cli-title-text">Información del Cliente</span>
           </div>
+
+          {/* Badge que el código global actualiza con orden / ID de pedido */}
+          <div
+            id="pedido-id-badge"
+            className="pedido-id-badge"
+            style={{ display: "none" }}
+          >
+            <span className="dot" aria-hidden="true"></span>
+            <span className="txt"></span>
+          </div>
         </div>
 
-        <div className="cli-grid" style={{ marginBottom: '12px' }}>
+        {/* Primera fila: Nombre + Referencia */}
+        <div className="cli-grid" style={{ marginBottom: "12px" }}>
           <div className="form-group">
             <label htmlFor="nombre">Nombre Completo</label>
             <input
@@ -37,6 +47,7 @@ function ClienteTab() {
           </div>
         </div>
 
+        {/* Segunda fila: WhatsApp + Email */}
         <div className="cli-row">
           <div className="form-group">
             <label htmlFor="whatsapp">WhatsApp</label>
@@ -48,6 +59,7 @@ function ClienteTab() {
               autoComplete="tel"
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="mail">Email</label>
             <input

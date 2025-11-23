@@ -12,7 +12,7 @@
   --gp-active-bg: #e5efff;
 }
 
-/* ===== SIDEBAR BASE ===== */
+/* ===== SIDEBAR BASE (ESCRITORIO) ===== */
 
 .gp-sidebar {
   position: relative;
@@ -35,7 +35,7 @@
   padding: 10px 8px;
 }
 
-/* Al pasar el mouse: se expande y muestra textos */
+/* Al pasar el mouse: se expande y muestra textos (SOLO PC) */
 .gp-sidebar:hover {
   width: 220px;
   background: var(--gp-bg-hover);
@@ -124,16 +124,95 @@
   filter: drop-shadow(0 1px 3px rgba(15, 23, 42, 0.25));
 }
 
-/* ===== RESPONSIVE (básico) ===== */
+/* ==============================================
+ *   MODO MÓVIL → BARRA INFERIOR
+ * ============================================== */
+@media (max-width: 900px) {
 
-@media (max-width: 768px) {
-  /* En mobile lo dejamos igual pero un poco más bajo en altura */
+  /* Sidebar pasa a barra inferior */
   .gp-sidebar {
-    height: 100vh;
-    width: 64px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    height: 65px;
+
+    border-radius: 0;
+    border-top: 1px solid var(--gp-border);
+    border-right: none;
+
+    background: var(--gp-bg);
+    box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+
+    padding: 4px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    z-index: 1000;
   }
 
+  /* IMPORTANTE:
+     Anular el efecto de hover de escritorio en móvil
+     para que NO cambie de ancho ni de alto al tocar. */
   .gp-sidebar:hover {
-    width: 190px;
+    width: 100%;
+    height: 65px;
+    background: var(--gp-bg);
+    box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+  }
+
+  /* Botones uno al lado del otro */
+  .gp-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .gp-nav-btn {
+    flex: 1;
+    flex-direction: column; /* ícono arriba */
+    justify-content: center;
+    align-items: center;
+
+    padding: 6px 4px;
+    border: none;
+    background: transparent;
+
+    gap: 4px;
+    box-shadow: none;
+  }
+
+  .gp-nav-btn:hover {
+    background: #f8fafd;
+    transform: none;
+  }
+
+  .gp-nav-btn.active {
+    background: #eef2ff;
+    color: #000;
+    border: none;
+  }
+
+  /* Oculto el texto en móvil */
+  .gp-nav-text {
+    display: none !important;
+  }
+
+  /* Ajustar ícono para móvil */
+  .gp-nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Ocultar elementos extra */
+  .gp-brand,
+  .gp-tip,
+  .gp-sidebar-spacer,
+  .gp-sidebar-footer {
+    display: none !important;
   }
 }
