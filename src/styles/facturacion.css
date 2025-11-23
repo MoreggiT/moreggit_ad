@@ -1,0 +1,542 @@
+/* src/styles/facturacion.css */
+
+/* ===== Estilo local Facturación ===== */
+.fac-wrap { 
+  display: grid; 
+  gap: 12px; 
+}
+.fac-hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.fac-hero .title{
+  font-weight:900;
+  color:#000;
+  letter-spacing:.2px;
+}
+.fac-hero .badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:800;
+  background:#f8fafc;
+  color:#0f172a;
+  border:1px solid #e5e7eb;
+  border-radius:999px;
+  padding:8px 10px;
+}
+
+/* Línea de ganancia */
+.profit-line{ 
+  display:none;
+  font-weight:900;
+  letter-spacing:.2px;
+  padding:0;
+  margin:0 2px 2px;
+}
+.profit-line.show{ display:block; }
+.profit-line .muted{ 
+  font-weight:700;
+  color:#6b7280;
+  margin-right:6px;
+}
+.profit-line .val{ font-weight:900; }
+.profit-ok{ color:#16a34a; }   /* >= 50% */
+.profit-mid{ color:#f59e0b; }  /* 0% < x < 50% */
+.profit-bad{ color:#ef4444; }  /* <= 0% */
+
+/* KPIs */
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.kpi{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+.kpi.primary{ border:2px solid #eef2f6; }
+.kpi .label{
+  color:#6b7280;
+  font-weight:700;
+  font-size:.9rem;
+}
+.kpi .value{
+  color:#000;
+  font-weight:900;
+  font-size:1.2rem;
+}
+
+/* Resumen de descuento */
+.discount-summary{
+  display:none;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+.discount-summary.show{ display:block; }
+.discount-summary .badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:800;
+  background:#000;
+  color:#fff;
+  border-radius:999px;
+  padding:6px 10px;
+}
+.discount-summary .kpis{ 
+  grid-template-columns:repeat(3,1fr);
+}
+
+/* Toolbar superior */
+.fac-toolbar{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:end;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+}
+.fac-add-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.fac-count{ width:110px; }
+.discount-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.profit-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.discount-panel{
+  display:none;
+  align-items:end;
+  gap:8px;
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:10px;
+}
+.discount-panel.show{ display:flex; }
+
+/* Tabla de ítems */
+#facturacion-tab .table-container{
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  overflow:auto;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+#facturacion-tab table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+}
+#facturacion-tab thead th{
+  position:sticky;
+  top:0;
+  z-index:1;
+  background:linear-gradient(180deg,#fafafa 0%, #f5f7fa 100%);
+  border-bottom:2px solid #eef2f6;
+  font-weight:900;
+  text-align:left;
+  padding:10px;
+}
+#facturacion-tab tbody td{
+  padding:10px;
+  border-bottom:1px solid #f1f5f9;
+}
+#facturacion-tab tbody tr:hover td{
+  background:#fafafa;
+}
+.right{ text-align:right; }
+
+/* Combo buscable */
+.combo{ position:relative; }
+.combo-input{
+  width:100%;
+  background:#fff;
+  border:2px solid #e5e7eb;
+  color:#000;
+  border-radius:10px;
+  padding:10px 12px;
+}
+.combo-input:focus{
+  outline:none;
+  border-color:#000;
+  box-shadow:0 0 0 4px rgba(0,0,0,.06);
+}
+.combo-list{
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% + 6px);
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  max-height:260px;
+  overflow:auto;
+  display:none;
+  padding:6px;
+  z-index:10;
+}
+.combo-list.show{ display:block; }
+.combo-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.combo-item:hover,
+.combo-item.active{
+  background:#f3f4f6;
+}
+.combo-empty{
+  padding:10px;
+  color:#6b7280;
+}
+
+.code-pill{
+  font-weight:900;
+  color:#111;
+  background:#f1f5f9;
+  border:1px solid #e5e7eb;
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:.85rem;
+}
+.desc-muted{
+  color:#374151;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+/* Inputs de tabla / campos */
+.input-table,
+.select-field,
+.input-field{
+  background:#fff;
+  border:2px solid #e5e7eb;
+  color:#000;
+  border-radius:10px;
+  padding:10px 12px;
+}
+.input-table:focus,
+.select-field:focus,
+.input-field:focus{
+  outline:none;
+  border-color:#000;
+  box-shadow:0 0 0 4px rgba(0,0,0,.06);
+}
+
+/* Botones base (si no los definiste en index.css) */
+.btn{
+  background:#000;
+  color:#fff;
+  border:none;
+  padding:10px 12px;
+  font-size:.9rem;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+.btn:hover{
+  opacity:.97;
+  transform:translateY(-1px);
+}
+.btn-outline{
+  background:#fff;
+  color:#111;
+  border:2px solid #e5e7eb;
+  box-shadow:none;
+}
+.btn-muted{
+  background:#fff;
+  color:#111;
+  border:2px solid #e5e7eb;
+}
+.btn-danger{
+  background:#fff;
+  color:#b91c1c;
+  border:2px solid #fecaca;
+  box-shadow:none;
+}
+.btn-xs{
+  padding:8px 10px;
+  font-size:.85rem;
+  border-radius:10px;
+}
+.fac-importe{
+  font-weight:900;
+}
+
+/* Pagos */
+.pay-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+  display:none;
+}
+.pay-card.show{ display:block; }
+.pay-toolbar{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  margin-bottom:6px;
+}
+.pay-list{ display:grid; gap:8px; }
+.pay-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  border:1px solid #eef2f6;
+  border-radius:10px;
+  padding:10px 12px;
+  background:#fff;
+}
+.pay-left{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.pay-chip{
+  font-weight:900;
+  border-radius:999px;
+  padding:4px 10px;
+}
+.pay-chip.in{
+  background:#ecfdf5;
+  color:#065f46;
+  border:1px solid #a7f3d0;
+}
+.pay-chip.out{
+  background:#fef2f2;
+  color:#991b1b;
+  border:1px solid #fecaca;
+}
+.pay-amount{ font-weight:900; }
+.muted{ color:#6b7280; }
+
+/* Modal pago rápido */
+.pay-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:18px;
+  backdrop-filter:saturate(1.2) blur(2px);
+}
+.pay-modal{
+  width:min(520px,96vw);
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.pay-modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid #e5e7eb;
+}
+.pay-modal-body{
+  padding:12px 14px;
+}
+.pay-modal-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  padding:12px 14px;
+  border-top:1px solid #e5e7eb;
+}
+.pay-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* Responsivo */
+@media (max-width: 1000px){
+  .kpis{ grid-template-columns:1fr; }
+  .discount-summary .kpis{ grid-template-columns:1fr; }
+  .fac-toolbar{ grid-template-columns:1fr; }
+  .pay-grid{ grid-template-columns:1fr; }
+}
+
+@media (max-width: 768px) {
+  .fac-hero { 
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+  .kpis { grid-template-columns: 1fr; }
+  
+  /* Botón de imprimir solo icono */
+  .fac-hero .btn-text {
+    display: none;
+  }
+  .fac-hero .btn {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .fac-hero .material-icons {
+    font-size: 22px;
+    margin-right: 0;
+  }
+  
+  .fac-toolbar { 
+    grid-template-columns: 1fr; 
+    gap: 14px; 
+  }
+  .fac-add-controls { justify-content: space-between; }
+  .fac-count { width: 80px; }
+  .discount-row { justify-content: stretch; }
+  .profit-row { justify-content: flex-start; }
+  .discount-panel { 
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+  .discount-panel input { 
+    width: 100% !important; 
+  }
+
+  /* Tabla tipo tarjetas */
+  #facturacion-tab thead {
+    display: none;
+  }
+  #facturacion-tab table,
+  #facturacion-tab tbody,
+  #facturacion-tab tr {
+    display: block;
+    width: 100%;
+  }
+  #facturacion-tab tr {
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 10px;
+    box-shadow: var(--shadow-s);
+  }
+  #facturacion-tab td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 4px;
+    border-bottom: 1px dashed var(--line2);
+  }
+  #facturacion-tab td:last-child {
+    border-bottom: none;
+    display: block;
+    text-align: center;
+    padding-top: 14px;
+  }
+
+  /* Ocultar descripción y total en móvil */
+  #facturacion-tab td:nth-child(2),
+  #facturacion-tab td:nth-child(5) {
+    display: none;
+  }
+
+  #facturacion-tab td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--muted);
+    text-align: left;
+    padding-right: 10px;
+  }
+
+  #facturacion-tab .input-table,
+  #facturacion-tab .combo-input {
+    width: 60%;
+    min-width: 130px;
+  }
+  
+  #facturacion-tab .table-actions {
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .combo-list {
+    width: 90vw;
+  }
+
+  /* Botones de pago solo icono */
+  .pay-toolbar {
+    justify-content: flex-end;
+  }
+  .pay-toolbar .btn-text {
+    display: none;
+  }
+  .pay-toolbar .btn,
+  .pay-toolbar .btn-outline {
+    padding: 10px;
+  }
+  .pay-toolbar .material-icons {
+    font-size: 22px;
+    margin-right: 0;
+  }
+  .pay-toolbar .muted {
+    display: none;
+  }
+
+  .pay-item { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 10px; 
+  }
+  .pay-left { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 8px; 
+  }
+  .pay-amount { font-size: 1.1rem; }
+}

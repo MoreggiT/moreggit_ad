@@ -1,0 +1,87 @@
+/* src/styles/cliente.css */
+
+/* Tarjeta de datos del cliente */
+.cli-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.cli-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+.cli-title-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.cli-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#111;
+  display:inline-block;
+  opacity:.9;
+}
+.cli-title-text{
+  letter-spacing:.2px;
+  font-weight:900;
+  color:#000;
+}
+
+.cli-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.cli-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+/* Inputs coherentes */
+.input-field{
+  background:#fff;
+  border:2px solid #e5e7eb;
+  color:#111;
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:.95rem;
+  transition:border .16s, box-shadow .16s;
+  width:100%;
+}
+.input-field:focus{
+  outline:none;
+  border-color:#000;
+  box-shadow:0 0 0 4px rgba(0,0,0,.07);
+}
+.cli-card label{
+  color:#0b0b0b;
+  font-weight:700;
+  display:block;
+  margin-bottom:6px;
+}
+
+/* ==============================================
+ * ADAPTACIÓN A MÓVIL
+ * ============================================== */
+@media (max-width: 768px){
+  .cli-grid{ 
+    grid-template-columns:1fr;
+    gap: 14px;
+  }
+  .cli-row{ 
+    grid-template-columns:1fr;
+    gap: 14px;
+  }
+  
+  .cli-card {
+    padding: 12px;
+  }
+}
